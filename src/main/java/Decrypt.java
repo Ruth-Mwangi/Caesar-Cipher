@@ -8,6 +8,29 @@ public class Decrypt {
     private int newIndex;
     private char decryptedLetter;
 
+    public String Decrypt(String message,int key){
+        this.mOriginalMessage = message.toUpperCase();
+        mKey=key;
+        mDecryptedMessage=mOriginalMessage;
+        mOriginalCharArray=mOriginalMessage.toCharArray();
+
+        for(Character i:mOriginalCharArray){
+            currentIndex=mAlphabet.indexOf(i);
+
+            newIndex=(currentIndex+mKey)%26;
+            if(newIndex>26){
+                newIndex-=26;
+                decryptedLetter=mAlphabet.charAt(newIndex);
+                mDecryptedMessage=mDecryptedMessage.replace(String.valueOf(i),String.valueOf(decryptedLetter));
+            }
+            else {
+                decryptedLetter=mAlphabet.charAt(newIndex);
+                mDecryptedMessage=mDecryptedMessage.replace(String.valueOf(i),String.valueOf(decryptedLetter));
+            }
+        }
+        return mDecryptedMessage;
+    }
+
 
 
 
