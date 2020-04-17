@@ -17,9 +17,9 @@ public class Decrypt {
         for(Character i:mOriginalCharArray){
             currentIndex=mAlphabet.indexOf(i);
 
-            newIndex=(currentIndex+mKey)%26;
-            if(newIndex>26){
-                newIndex-=26;
+            newIndex=(currentIndex-mKey)%26;
+            if(newIndex<0){
+                newIndex+=26;
                 decryptedLetter=mAlphabet.charAt(newIndex);
                 mDecryptedMessage=mDecryptedMessage.replace(String.valueOf(i),String.valueOf(decryptedLetter));
             }
