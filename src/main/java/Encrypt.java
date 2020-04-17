@@ -17,17 +17,19 @@ public class Encrypt {
         mOriginalCharArray=mOriginalMessage.toCharArray();
 
         for(Character i:mOriginalCharArray){
-            currentIndex=mAlphabet.indexOf(i);
+            if(!i.equals(' ')){
+                currentIndex=mAlphabet.indexOf(i);
 
-            newIndex=(currentIndex+mKey)%26;
-            if(newIndex>26){
-                newIndex-=26;
-                encryptedLetter=mAlphabet.charAt(newIndex);
-                mEncryptedMessage=mEncryptedMessage.replace(String.valueOf(i),String.valueOf(encryptedLetter));
-            }
-            else {
-                encryptedLetter=mAlphabet.charAt(newIndex);
-                mEncryptedMessage=mEncryptedMessage.replace(String.valueOf(i),String.valueOf(encryptedLetter));
+                newIndex=(currentIndex+mKey)%26;
+                if(newIndex>26){
+                    newIndex-=26;
+                    encryptedLetter=mAlphabet.charAt(newIndex);
+                    mEncryptedMessage=mEncryptedMessage.replace(String.valueOf(i),String.valueOf(encryptedLetter));
+                }
+                else {
+                    encryptedLetter=mAlphabet.charAt(newIndex);
+                    mEncryptedMessage=mEncryptedMessage.replace(String.valueOf(i),String.valueOf(encryptedLetter));
+                }
             }
         }
         return mEncryptedMessage;
