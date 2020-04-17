@@ -2,7 +2,7 @@ public class CeaserCipher {
     private String mMessage;
     private int mKey;
     public CeaserCipher(String mMessage, int mKey) {
-        this.mMessage = mMessage;
+        this.mMessage = mMessage.toUpperCase();
         this.mKey = mKey;
     }
 
