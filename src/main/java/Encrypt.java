@@ -8,38 +8,37 @@ public class Encrypt {
     private int newIndex;
     private char encryptedLetter;
 
-    public Encrypt(String mOriginalMessage,int mKey) {
-        this.mOriginalMessage = mOriginalMessage.toUpperCase();
-        this.mKey=mKey;
-
-        mEncrypt(mOriginalMessage,this.mKey);
 
 
-    }
+    public String mEncrypt(String message,int mKey){
+        mOriginalMessage = message.toUpperCase();
 
-    private String mEncrypt(String mOriginalMessage,int mKey){
 
         mEncryptMessage=mOriginalMessage;
-
         mOriginalCharArray=mOriginalMessage.toCharArray();
+        System.out.println("char array"+mOriginalMessage);
 
-        for(char i:mOriginalCharArray){
+        for(Character i:mOriginalCharArray){
             currentIndex=mAlphabet.indexOf(i);
+
             newIndex=(currentIndex+mKey)%26;
             if(newIndex>26){
                 newIndex-=26;
                 encryptedLetter=mAlphabet.charAt(newIndex);
-                mEncryptMessage.replaceAll(String.valueOf(i),String.valueOf(encryptedLetter));
+
+                mEncryptMessage=mEncryptMessage.replace(String.valueOf(i),String.valueOf(encryptedLetter));
 
             }
             else {
                 encryptedLetter=mAlphabet.charAt(newIndex);
-                mEncryptMessage.replaceAll(String.valueOf(i),String.valueOf(encryptedLetter));
+
+                mEncryptMessage=mEncryptMessage.replace(String.valueOf(i),String.valueOf(encryptedLetter));
 
             }
 
-
         }
+
+        return mEncryptMessage;
 
     }
 
