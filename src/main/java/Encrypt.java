@@ -1,21 +1,27 @@
 public class Encrypt {
     private String mOriginalMessage;
     private int mKey;
-    private char[] mOrignalCharArray;
-    private String malphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private char[] mOriginalCharArray;
+    private String mAlphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private int currentIndex;
+    private int newIndex;
+    private char encryptedLetter;
 
     public Encrypt(String mOriginalMessage,int mKey) {
         this.mOriginalMessage = mOriginalMessage.toUpperCase();
         this.mKey=mKey;
-        mOrignalCharArray=mOriginalMessage.toCharArray();
-        mEncryptMessage(mOrignalCharArray);
+        mOriginalCharArray=mOriginalMessage.toCharArray();
+        mEncryptMessage(mOriginalCharArray,this.mKey);
 
 
     }
 
-    private String mEncryptMessage(char[] mOrignalCharArray){
+    private String mEncryptMessage(char[] mOriginalCharArray,int mKey){
 
-        for(char i:mOrignalCharArray){
+        for(char i:mOriginalCharArray){
+            currentIndex=mAlphabet.indexOf(i);
+            newIndex=(currentIndex+mKey)%26;
+            if(newIndex>26)
 
         }
 
