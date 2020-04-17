@@ -33,5 +33,7 @@ public class Encrypt {
         return mEncryptedMessage;
     }
 
-
+    public String getmEncryptedMessage() {
+        return mEncryptedMessage;
+    }
 }
