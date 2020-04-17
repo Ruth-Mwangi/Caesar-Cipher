@@ -6,4 +6,11 @@ public class CeaserCipher {
         this.mKey = mKey;
     }
 
+    public String getmMessage() {
+        return mMessage;
+    }
+
+    public int getmKey() {
+        return mKey;
+    }
 }
