@@ -9,7 +9,8 @@ public class App {
 
             System.out.println("Welcome to the Caesar Cipher");
             System.out.println("Do you want to Encrypt or Decrypt or Exit");
-            String navigate =scan.nextLine();
+            String navigate =scan.next();
+            scan.nextLine();
 
             if(navigate.equals("Encrypt")){
                 System.out.println("___________________________________");
@@ -18,6 +19,23 @@ public class App {
                 String msgEncrypt=scan.nextLine();
                 System.out.println("Enter encryption key between 1 and 25");
                 int encryptKey=scan.nextInt();
+                if(encryptKey>=1 && encryptKey<=25){
+                    CeaserCipher caesar=new CeaserCipher(msgEncrypt,encryptKey);
+                    Encrypt encrypt=new Encrypt();
+                    encrypt.Encrypt(caesar.getmMessage(),caesar.getmKey());
+                    Decrypt decrypt=new Decrypt();
+                    decrypt.Decrypt(encrypt.getmEncryptedMessage(),caesar.getmKey());
+
+                    System.out.println("----------------------");
+                    System.out.println("Input Message : "+caesar.getmMessage());
+                    System.out.println("Encrypted Message : "+encrypt.getmEncryptedMessage());
+                    System.out.println("Decrypted Message : "+decrypt.getmDecryptedMessage());
+                    System.out.println("---------------------------");
+
+                }
+                else {
+                    System.out.println("key must be between 1 and 25");
+                }
 
             }
             else if(navigate.equals("Decrypt")){
@@ -32,11 +50,12 @@ public class App {
                     Decrypt decrypt=new Decrypt();
                     decrypt.Decrypt(caesar.getmMessage(),caesar.getmKey());
                     Encrypt encrypt=new Encrypt();
-                    encrypt.Encrypt(decrypt.getmDecryptedMessage(),decryptKey);
+                    encrypt.Encrypt(decrypt.getmDecryptedMessage(),caesar.getmKey());
                     System.out.println("----------------------");
                     System.out.println("Input Message : "+caesar.getmMessage());
                     System.out.println("Decrypted Message : "+decrypt.getmDecryptedMessage());
                     System.out.println("Encrypted Message : "+encrypt.getmEncryptedMessage());
+                    System.out.println("--------------------------");
                 }
                 else {
                     System.out.println("key must be between 1 and 25");
