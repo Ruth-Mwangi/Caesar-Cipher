@@ -31,8 +31,7 @@ public class Decrypt {
         return mDecryptedMessage;
     }
 
-
-
-
-
+    public String getmDecryptedMessage() {
+        return mDecryptedMessage;
+    }
 }
