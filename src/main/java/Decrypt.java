@@ -15,17 +15,19 @@ public class Decrypt {
         mOriginalCharArray=mOriginalMessage.toCharArray();
 
         for(Character i:mOriginalCharArray){
-            currentIndex=mAlphabet.indexOf(i);
+            if(!i.equals(' ')){
+                currentIndex=mAlphabet.indexOf(i);
 
-            newIndex=(currentIndex-mKey)%26;
-            if(newIndex<0){
-                newIndex+=26;
-                decryptedLetter=mAlphabet.charAt(newIndex);
-                mDecryptedMessage=mDecryptedMessage.replace(String.valueOf(i),String.valueOf(decryptedLetter));
-            }
-            else {
-                decryptedLetter=mAlphabet.charAt(newIndex);
-                mDecryptedMessage=mDecryptedMessage.replace(String.valueOf(i),String.valueOf(decryptedLetter));
+                newIndex=(currentIndex-mKey)%26;
+                if(newIndex<0){
+                    newIndex+=26;
+                    decryptedLetter=mAlphabet.charAt(newIndex);
+                    mDecryptedMessage=mDecryptedMessage.replace(String.valueOf(i),String.valueOf(decryptedLetter));
+                }
+                else {
+                    decryptedLetter=mAlphabet.charAt(newIndex);
+                    mDecryptedMessage=mDecryptedMessage.replace(String.valueOf(i),String.valueOf(decryptedLetter));
+                }
             }
         }
         return mDecryptedMessage;
