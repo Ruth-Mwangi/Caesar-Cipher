@@ -1,6 +1,6 @@
 public class Decrypt {
     private String mOriginalMessage;
-    private String mDecryptedMessage;
+    private StringBuilder mDecryptedMessage=new StringBuilder("");
     private int mKey;
     private char[] mOriginalCharArray;
     private String mAlphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -11,30 +11,30 @@ public class Decrypt {
     public String Decrypt(String message,int key){
         this.mOriginalMessage = message.toUpperCase();
         mKey=key;
-        mDecryptedMessage=mOriginalMessage;
         mOriginalCharArray=mOriginalMessage.toCharArray();
 
-        for(Character i:mOriginalCharArray){
-            if(!i.equals(' ')){
-                currentIndex=mAlphabet.indexOf(i);
+        for(int i=0;i<mOriginalCharArray.length;i++){
 
-                newIndex=(currentIndex-mKey)%26;
-                if(newIndex<0){
-                    newIndex+=26;
-                    decryptedLetter=mAlphabet.charAt(newIndex);
-                    mDecryptedMessage=mDecryptedMessage.replace(String.valueOf(i),String.valueOf(decryptedLetter));
+                currentIndex=mAlphabet.indexOf(mOriginalCharArray[i]);
+
+                if (currentIndex!=-1){
+                    newIndex=(currentIndex-mKey)%26;
+                    if(newIndex<0){
+                        newIndex+=26;
+                        decryptedLetter=mAlphabet.charAt(newIndex);
+                        mDecryptedMessage.append(decryptedLetter);                    }
+                    else {
+                        decryptedLetter=mAlphabet.charAt(newIndex);
+                        mDecryptedMessage.append(decryptedLetter);
+                    }
+
                 }
-                else {
-                    decryptedLetter=mAlphabet.charAt(newIndex);
-                    mDecryptedMessage=mDecryptedMessage.replace(String.valueOf(i),String.valueOf(decryptedLetter));
-                }
-            }
         }
-        return mDecryptedMessage;
+        return mDecryptedMessage.toString();
     }
 
     public String getmDecryptedMessage() {
-        return mDecryptedMessage;
+        return mDecryptedMessage.toString();
     }
 
 }

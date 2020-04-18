@@ -1,6 +1,6 @@
 public class Encrypt {
     private String mOriginalMessage;
-    private String mEncryptedMessage;
+    private StringBuilder mEncryptedMessage=new StringBuilder("");
     private int mKey;
     private char[] mOriginalCharArray;
     private String mAlphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -11,31 +11,32 @@ public class Encrypt {
 
 
     public String Encrypt(String message,int key){
-        this.mOriginalMessage = message.toUpperCase();
+       this.mOriginalMessage = message.toUpperCase();
         mKey=key;
-        mEncryptedMessage=mOriginalMessage;
         mOriginalCharArray=mOriginalMessage.toCharArray();
 
-        for(Character i:mOriginalCharArray){
-            if(!i.equals(' ')){
-                currentIndex=mAlphabet.indexOf(i);
+        for(int i=0;i<mOriginalCharArray.length;i++){
 
-                newIndex=(currentIndex+mKey)%26;
-                if(newIndex>26){
-                    newIndex-=26;
-                    encryptedLetter=mAlphabet.charAt(newIndex);
-                    mEncryptedMessage=mEncryptedMessage.replace(String.valueOf(i),String.valueOf(encryptedLetter));
+                currentIndex=mAlphabet.indexOf(mOriginalCharArray[i]);
+
+                if(currentIndex!=-1){
+                    newIndex=(currentIndex+mKey)%26;
+                    if(newIndex>26){
+                        newIndex-=26;
+                        encryptedLetter=mAlphabet.charAt(newIndex);
+                        mEncryptedMessage.append(encryptedLetter);
+                    }
+                    else {
+                        encryptedLetter=mAlphabet.charAt(newIndex);
+                        mEncryptedMessage.append(encryptedLetter);
+                    }
+
                 }
-                else {
-                    encryptedLetter=mAlphabet.charAt(newIndex);
-                    mEncryptedMessage=mEncryptedMessage.replace(String.valueOf(i),String.valueOf(encryptedLetter));
-                }
-            }
         }
-        return mEncryptedMessage;
+        return mEncryptedMessage.toString();
     }
 
     public String getmEncryptedMessage() {
-        return mEncryptedMessage;
+        return mEncryptedMessage.toString();
     }
 }

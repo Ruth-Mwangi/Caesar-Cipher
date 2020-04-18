@@ -19,7 +19,7 @@ public class App {
                 String msgEncrypt=scan.nextLine();
                 System.out.println("Enter encryption key between 1 and 25");
                 int encryptKey=scan.nextInt();
-                if(encryptKey>=1 && encryptKey<=25){
+                if(encryptKey>0 && encryptKey<=25){
                     CeaserCipher caesar=new CeaserCipher(msgEncrypt,encryptKey);
                     Encrypt encrypt=new Encrypt();
                     encrypt.Encrypt(caesar.getmMessage(),caesar.getmKey());
